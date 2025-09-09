@@ -1,0 +1,50 @@
+# Deep learning framework to build and train the chicken disease classifier
+tensorflow          
+
+# Data manipulation and analysis (loading CSVs, tabular handling)
+pandas              
+
+# Data Version Control (manages datasets, models, pipelines for MLOps)
+dvc                 
+
+# Jupyter notebook support for interactive experiments
+notebook            
+
+# Numerical computations and array operations
+numpy               
+
+# Plotting library for visualizing training curves, metrics, etc.
+matplotlib          
+
+# Statistical data visualization (heatmaps, confusion matrix, etc.)
+seaborn             
+
+# Turns dictionaries into dot-accessible objects (cleaner config handling)
+python-box==6.0.2   
+
+# Read/write YAML files (configs like params.yaml, config.yaml)
+PyYAML              
+
+# Progress bars for loops (e.g., training progress, data ingestion)
+tqdm                
+
+# Lightweight validation/contract library for inputs/outputs
+ensure==1.0.2       
+
+# Serialization and parallelization (save/load models, speed up tasks)
+joblib              
+
+# Type stubs for PyYAML (helps with linting and IDE autocompletion)
+types-PyYAML        
+
+# Scientific computing (stats, optimizers, supporting TensorFlow/sklearn)
+scipy               
+
+# Lightweight web framework to serve prediction API
+Flask               
+
+# Cross-Origin Resource Sharing support for Flask (allow frontend requests)
+Flask-Cors          
+
+# Install *this project itself* as a package (editable mode)
+-e .

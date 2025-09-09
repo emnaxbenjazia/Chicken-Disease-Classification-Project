@@ -26,6 +26,7 @@ list_of_files = [
     "requirements.txt", # Python dependencies.
     "setup.py", # makes project installable as a package (pip install -e .).
     "research/trials.ipynb", # we need this to perform some notebook experiments before implementing the actual components
+    "templates/index.html",
 ]
 
 for filepath in list_of_files:
