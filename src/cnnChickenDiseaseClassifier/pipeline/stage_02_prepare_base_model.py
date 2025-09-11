@@ -5,7 +5,7 @@ from cnnChickenDiseaseClassifier import logger
 
 STAGE_NAME = "Prepare base model"
 
-class PrepareBaseModelTrainingPipeline:
+class PrepareBaseModelTrainingPipeline: # for preparing the model, not training.
     def __init__(self):
         pass
 
