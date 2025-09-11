@@ -1,0 +1,37 @@
+# This is the master config file written in YAML.
+# It’s static: just a text file with values.
+# Central place where you define project parameters (paths, URLs, hyperparameters, etc.).
+# Easy to edit without touching Python code.
+# Can be versioned with Git/DVC to track experiments.
+
+
+artifacts_root: artifacts
+ # when we run the ingestion pipeline, the folder tree artifacts/... will be created automatically, the zip will be downloaded into artifacts/data_ingestion/data.zip., and the dataset extracted into artifacts/data_ingestion/.
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion # Stores the typed, immutable config (your DataIngestionConfig) so methods can read root_dir, source_URL, etc.
+  source_URL: https://chicken-disease-data-emna.s3.us-east-1.amazonaws.com/Chicken-fecal-images.zip
+  local_data_file: artifacts/data_ingestion/data.zip
+  unzip_dir: artifacts/data_ingestion
+
+
+
+prepare_base_model:
+  root_dir: artifacts/prepare_base_model
+  base_model_path: artifacts/prepare_base_model/base_model.h5
+  updated_base_model_path: artifacts/prepare_base_model/base_model_updated.h5
+
+
+
+
+prepare_callbacks:
+  root_dir: artifacts/prepare_callbacks
+  tensorboard_root_log_dir: artifacts/prepare_callbacks/tensorboard_log_dir
+  checkpoint_model_filepath: artifacts/prepare_callbacks/checkpoint_dir/model.h5
+
+
+
+
+training:
+  root_dir: artifacts/training
+  trained_model_path: artifacts/training/model.h5
