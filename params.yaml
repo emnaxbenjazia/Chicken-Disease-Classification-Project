@@ -1,1 +1,10 @@
-key : val
+# putting these model params here so if i want to change them, i just update this file and it will reflect on all the code
+
+AUGMENTATION: True
+IMAGE_SIZE: [224, 224, 3] # as per VGG 16 model. specified in website in input_shape
+BATCH_SIZE: 16
+INCLUDE_TOP: False # because we'll be adding our own top, we just want to get the base 
+EPOCHS: 1 # epochs=1 keeps things simple at first, to understand the pipeline, then we can increase the epochs to actually train the model
+CLASSES: 2 # output classes
+WEIGHTS: imagenet 
+LEARNING_RATE: 0.01
