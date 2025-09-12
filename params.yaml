@@ -8,3 +8,4 @@ EPOCHS: 1 # epochs=1 keeps things simple at first, to understand the pipeline, t
 CLASSES: 2 # output classes
 WEIGHTS: imagenet 
 LEARNING_RATE: 0.01
+SEED: 42

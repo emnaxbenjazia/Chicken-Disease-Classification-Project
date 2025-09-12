@@ -47,6 +47,7 @@ class Training:
             directory=self.config.training_data,
             subset="validation",
             shuffle=False,
+            seed = self.config.params_seed,
             **dataflow_kwargs
         )
 
@@ -67,6 +68,7 @@ class Training:
             directory=self.config.training_data,
             subset="training",
             shuffle=True,
+            seed = self.config.params_seed,
             **dataflow_kwargs
         )
 
