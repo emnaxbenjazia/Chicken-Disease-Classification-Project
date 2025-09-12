@@ -1,7 +1,15 @@
+import tensorflow as tf
 from cnnChickenDiseaseClassifier import logger
 from cnnChickenDiseaseClassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from cnnChickenDiseaseClassifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
+from cnnChickenDiseaseClassifier.pipeline.stage_03_training import ModelTrainingPipeline
 
+# -----------------------------
+# Force eager execution globally
+# -----------------------------
+tf.keras.backend.clear_session()
+tf.config.run_functions_eagerly(True)
+logger.info(f"Eager execution enabled: {tf.executing_eagerly()}")
 
 STAGE_NAME = "Data Ingestion "
 try:
@@ -38,3 +46,16 @@ except Exception as e:
         logger.exception(e)
         # Re-raise the exception so the program stops instead of failing silently
         raise e
+
+
+# ---- Stage 03: Training ----
+STAGE_NAME = "Training"
+
+try:
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    obj = ModelTrainingPipeline()  # or ModelTrainingPipeline(), matching your file
+    obj.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
+    raise e

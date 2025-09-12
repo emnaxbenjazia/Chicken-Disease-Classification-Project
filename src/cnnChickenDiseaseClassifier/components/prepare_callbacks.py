@@ -17,7 +17,7 @@ class PrepareCallback:
         tb_running_log_dir = os.path.join(
             self.config.tensorboard_root_log_dir,
             f"tb_logs_at_{timestamp}", # timestamp ensures each training run gets a unique folder (avoids overwriting old logs).
-        )
+        ) # to view Tensorboard logs on browser, run this in the terminal and visit the website: tensorboard --logdir artifacts/prepare_callbacks/tensorboard_log_dir/
         return tf.keras.callbacks.TensorBoard(log_dir=tb_running_log_dir)
     
 
