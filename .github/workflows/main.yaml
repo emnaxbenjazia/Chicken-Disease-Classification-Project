@@ -86,28 +86,9 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Install AWS CLI and jq
+      - name: Debug ECR repo secret
         run: |
-          sudo apt-get update -y
-          sudo apt-get install -y awscli jq
-
-
-
-      - name: Debug registry/repo
-        run: |
-          echo "AWS ID / Region:"
-          aws sts get-caller-identity
-          echo "REGION=$AWS_REGION"
-
-          echo "Registry (from login step):"
-          printf '[%s]\n' "${{ steps.login-ecr.outputs.registry }}"
-
-          echo "Repo name (from secret):"
-          printf '[%s]\n' "${{ secrets.ECR_REPOSITORY_NAME }}"
-
-          echo "Repos that exist in this account/region:"
-          aws ecr describe-repositories --region "$AWS_REGION" \
-            | jq -r '.repositories[].repositoryName'
+          echo "StartSecret[${{ secrets.ECR_REPOSITORY_NAME }}]EndSecret"
 
 
       - name: Pull latest images
