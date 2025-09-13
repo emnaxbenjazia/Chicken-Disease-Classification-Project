@@ -3,11 +3,11 @@ name: workflow
 on:
   push:
     branches:
-      - ci-testing # the workflow triggers on pushes to the main branch
+      - ci-testing
     paths-ignore:
-      - 'README.md' # ignores commits to README because this doesnt change any features in the code (nothing to deploy)
+      - 'README.md'
 
-permissions: 
+permissions:
   id-token: write
   contents: read
 
@@ -25,8 +25,7 @@ jobs:
       - name: Run unit tests
         run: echo "Running unit tests"
 
-  build-and-push-ecr-image: 
-  # Build and publish your Docker image to Amazon ECR.
+  build-and-push-ecr-image:
     name: Continuous Delivery
     needs: integration
     runs-on: ubuntu-latest
@@ -56,15 +55,12 @@ jobs:
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
           IMAGE_TAG: latest
         run: |
-          pwd
-          ls -la
-          ls -la Dockerfile || echo "Dockerfile not found at repo root"
-          echo "ECR_REGISTRY=${ECR_REGISTRY}"
-          echo "ECR_REPOSITORY=${ECR_REPOSITORY}"
-          echo "IMAGE_TAG=${IMAGE_TAG}"
-
-          docker build -f Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build . -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           
           
   Continuous-Deployment:
