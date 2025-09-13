@@ -86,11 +86,6 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Debug ECR repo secret
-        run: |
-          echo "StartSecret[${{ secrets.ECR_REPOSITORY_NAME }}]EndSecret"
-
-
       - name: Pull latest image
         run: |
           IMAGE="${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest"
