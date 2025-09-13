@@ -92,6 +92,10 @@ jobs:
           echo "Pulling: $IMAGE"
           docker pull "$IMAGE"
 
+      - name: Stop & remove old container if present
+        run: |
+          docker ps -aq -f name=^/cnncls$ | xargs -r docker rm -f
+
       - name: Run Docker Image to serve users
         run: |
           IMAGE="${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest"
@@ -100,5 +104,3 @@ jobs:
             -e AWS_SECRET_ACCESS_KEY='${{ secrets.AWS_SECRET_ACCESS_KEY }}' \
             -e AWS_REGION='${{ secrets.AWS_REGION }}' \
             "$IMAGE"
-
-
