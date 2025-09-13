@@ -3,7 +3,7 @@ name: workflow
 on:
   push:
     branches:
-      - ci-testing
+      - main
     paths-ignore:
       - 'README.md'
 
